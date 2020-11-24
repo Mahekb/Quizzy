@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizzy/const/Theme.dart';
+import 'package:quizzy/screens/AddQuizScreen.dart';
+import 'package:quizzy/screens/SignUpScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -76,6 +78,17 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: q_PrimaryColor,
         unselectedItemColor: Colors.black,
         onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //add quizes
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddQuizScreen()),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: q_PrimaryColor,
       ),
       body: Container(
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 5.0),
