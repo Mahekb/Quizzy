@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quizzy/const/Theme.dart';
 import 'package:quizzy/screens/AddQuizScreen.dart';
 import 'package:quizzy/screens/SignUpScreen.dart';
+
+import 'login.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -12,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   DateTime now = new DateTime.now();
+  final auth = FirebaseAuth.instance;
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
@@ -340,6 +344,25 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20.0,
             ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: FlatButton(
+            //         child: Text('Logout',
+            //             style: TextStyle(
+            //               fontSize: 50,
+            //               fontWeight: FontWeight.bold,
+            //             )),
+            //         onPressed: () {
+            //           auth.signOut();
+            //           Navigator.of(context).pushReplacement(MaterialPageRoute(
+            //             builder: (context) => LoginScreen(),
+            //           ));
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

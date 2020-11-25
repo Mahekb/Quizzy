@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quizzy/notifier/quizNotifier.dart';
 import 'package:quizzy/screens/HomeScreen.dart';
 import 'package:quizzy/screens/SignUpScreen.dart';
+import 'package:quizzy/screens/login.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
