@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizzy/notifier/quizNotifier.dart';
 import 'package:quizzy/screens/HomeScreen.dart';
+import 'package:quizzy/screens/MessageScreen.dart';
 import 'package:quizzy/screens/SignUpScreen.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: MessageScreen(),
     );
   }
 }

@@ -10,6 +10,8 @@ class QuizNotifier with ChangeNotifier {
   String get currentQuizId => _currentQuizId;
   Quiz get currentQuiz => _currentQuiz;
 
+  // String _currentQuizAns;
+
   set currentQuiz(Quiz quiz) {
     _currentQuiz = quiz;
     notifyListeners();

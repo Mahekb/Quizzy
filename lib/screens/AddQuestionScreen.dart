@@ -5,6 +5,7 @@ import 'package:quizzy/const/Theme.dart';
 import 'package:quizzy/models/Quiz.dart';
 import 'package:quizzy/notifier/quizNotifier.dart';
 import 'package:quizzy/screens/ShowQuestionScreen.dart';
+import 'package:quizzy/screens/ShowQuizScreen.dart';
 
 class AddQuestionScreen extends StatefulWidget {
   AddQuestionScreen({Key key}) : super(key: key);
@@ -185,6 +186,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ShowQuestionScreen(),
+                      // builder: (context) => ShowQuizScreen(),
                     ),
                   );
                 },
