@@ -34,103 +34,106 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
               fontSize: 22.0, fontWeight: FontWeight.bold, letterSpacing: 2),
         ),
       ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Name of the Quiz',
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Name of the Quiz',
+                ),
+                onSaved: (String value) {
+                  _quiz.name = value;
+                },
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'name is required';
+                  }
+                },
               ),
-              onSaved: (String value) {
-                _quiz.name = value;
-              },
-              validator: (String value) {
-                if (value.isEmpty) {
-                  return 'name is required';
-                }
-              },
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'No. of questions',
+              SizedBox(
+                height: 15.0,
               ),
-              onSaved: (String value) {
-                _quiz.noOfQuestions = int.tryParse(value);
-              },
-              validator: (String value) {
-                if (value.isEmpty) {
-                  return 'this is required';
-                }
-              },
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Duration of Quiz',
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'No. of questions',
+                ),
+                onSaved: (String value) {
+                  _quiz.noOfQuestions = int.tryParse(value);
+                },
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'this is required';
+                  }
+                },
               ),
-              onSaved: (String value) {
-                _quiz.duration = int.tryParse(value);
-              },
-              validator: (String value) {
-                if (value.isEmpty) {
-                  return 'this is required';
-                }
-              },
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Total Marks',
+              SizedBox(
+                height: 15.0,
               ),
-              onSaved: (String value) {
-                _quiz.totalMarks = int.tryParse(value);
-              },
-              validator: (String value) {
-                if (value.isEmpty) {
-                  return 'this is required';
-                }
-              },
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            RaisedButton(
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-              onPressed: () async {
-                print("\n*************\n");
-                _formKey.currentState.save();
-                print(_quiz.toMap());
-                print("\n-----------\n");
-                await addQuiz(
-                  "userId",
-                  _quiz.name,
-                  _quiz.noOfQuestions,
-                  _quiz.duration,
-                  _quiz.totalMarks,
-                  _quiz.questionList,
-                  _quiz.createdAt,
-                ).then((value) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AddQuestionScreen()),
-                  );
-                  quizNotifier.currentQuizId = value.toString();
-                });
-              },
-              child: Text(
-                'Next',
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Duration of Quiz',
+                ),
+                onSaved: (String value) {
+                  _quiz.duration = int.tryParse(value);
+                },
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'this is required';
+                  }
+                },
               ),
-            ),
-          ],
+              SizedBox(
+                height: 15.0,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Total Marks',
+                ),
+                onSaved: (String value) {
+                  _quiz.totalMarks = int.tryParse(value);
+                },
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'this is required';
+                  }
+                },
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                onPressed: () async {
+                  print("\n*************\n");
+                  _formKey.currentState.save();
+                  print(_quiz.toMap());
+                  print("\n-----------\n");
+                  await addQuiz(
+                    "userId",
+                    _quiz.name,
+                    _quiz.noOfQuestions,
+                    _quiz.duration,
+                    _quiz.totalMarks,
+                    _quiz.questionList,
+                    _quiz.createdAt,
+                  ).then((value) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddQuestionScreen()),
+                    );
+                    quizNotifier.currentQuizId = value.toString();
+                  });
+                },
+                child: Text(
+                  'Next',
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

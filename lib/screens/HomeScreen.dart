@@ -1,7 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quizzy/const/Theme.dart';
+import 'package:quizzy/notifier/authNotifier.dart';
 import 'package:quizzy/screens/AddQuizScreen.dart';
+import 'package:quizzy/screens/AllQuizesScreen.dart';
+import 'package:quizzy/screens/ForumScreen.dart';
+import 'package:quizzy/screens/MessageScreen.dart';
 import 'package:quizzy/screens/SignUpScreen.dart';
+import 'package:quizzy/screens/profile.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -34,9 +41,29 @@ class _HomeScreenState extends State<HomeScreen> {
     fontWeight: FontWeight.w700,
     color: Colors.black,
   );
+  @override
+  void initState() {
+    // Future<FirebaseUser> user = FirebaseAuth.instance.currentUser();
+    // AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
+
+    // user.then((FirebaseUser _user) {
+    //   if (_user == null) {
+    //     print("User is null");
+    //   } else {
+    //     authNotifier.currentUser(_user);
+    //     print("User is not null , uid: ${_user.uid} email: ${_user.email}");
+    //   }
+    // });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
+    print("\n***********\n");
+    print(authNotifier.user.email);
+    print("\n***********\n");
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: q_PrimaryColor,
@@ -48,28 +75,60 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
+            icon: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+              child: Icon(
+                Icons.home,
+              ),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
+            icon: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsUI()),
+                );
+              },
+              child: Icon(
+                Icons.person,
+              ),
             ),
             label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.message,
+            icon: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ForumScreen()),
+                );
+              },
+              child: Icon(
+                Icons.message,
+              ),
             ),
             label: 'Messages',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.dns,
+            icon: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AllQuizesScreen()),
+                );
+              },
+              child: Icon(
+                Icons.dns,
+              ),
             ),
             label: 'Quizes',
           ),
@@ -94,37 +153,45 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 5.0),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Image.asset(
-                      "assets/images/quiz1.png",
-                      height: 90.0,
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/quiz1.png",
+                          height: 90.0,
+                        ),
+                        Text("See Tests"),
+                      ],
                     ),
-                    Text("See Tests"),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Image.asset(
-                      "assets/images/quiz2.png",
-                      height: 90.0,
+                  ),
+                  Flexible(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/quiz2.png",
+                          height: 90.0,
+                        ),
+                        Text("Take Tests"),
+                      ],
                     ),
-                    Text("Take Tests"),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Image.asset(
-                      "assets/images/quiz3.png",
-                      height: 90.0,
+                  ),
+                  Flexible(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/quiz3.png",
+                          height: 90.0,
+                        ),
+                        Text("Get Result"),
+                      ],
                     ),
-                    Text("Get Result"),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: 25.0,

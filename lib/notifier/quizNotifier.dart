@@ -14,6 +14,7 @@ class QuizNotifier with ChangeNotifier {
 
   set currentQuiz(Quiz quiz) {
     _currentQuiz = quiz;
+    _currentQuizId = quiz.id;
     notifyListeners();
   }
 

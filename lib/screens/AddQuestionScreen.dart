@@ -39,162 +39,167 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Text(
-                "Question No. " + cnt.toString(),
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.black,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Text(
+                  "Question No. " + cnt.toString(),
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Question',
+                SizedBox(
+                  height: 15.0,
                 ),
-                onSaved: (String value) {
-                  _question.questionStatement = value;
-                },
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'Question is required';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Option 1',
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Question',
+                  ),
+                  onSaved: (String value) {
+                    _question.questionStatement = value;
+                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Question is required';
+                    }
+                  },
                 ),
-                onSaved: (String value) {
-                  optionList.add(value);
-                },
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'this is required';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Option 2',
+                SizedBox(
+                  height: 15.0,
                 ),
-                onSaved: (String value) {
-                  optionList.add(value);
-                },
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'this is required';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Option 3',
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Option 1',
+                  ),
+                  onSaved: (String value) {
+                    optionList.add(value);
+                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'this is required';
+                    }
+                  },
                 ),
-                onSaved: (String value) {
-                  optionList.add(value);
-                },
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'this is required';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Option 4',
+                SizedBox(
+                  height: 15.0,
                 ),
-                onSaved: (String value) {
-                  optionList.add(value);
-                },
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'this is required';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Correct Option',
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Option 2',
+                  ),
+                  onSaved: (String value) {
+                    optionList.add(value);
+                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'this is required';
+                    }
+                  },
                 ),
-                onSaved: (String value) {
-                  _question.correctOption = int.tryParse(value);
-                },
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'this is required';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                onPressed: () async {
-                  _question.optionList = optionList;
-                  print("\n*************\n");
-                  _formKey.currentState.save();
-                  print(_question.toMap());
-                  print("\n-----------\n");
-                  await addQuestion(
-                    "userId", //here we will have user id from providers
-                    quizNotifier.currentQuizId,
-                    _question.questionStatement,
-                    _question.optionList,
-                    _question.correctOption,
-                  ).then((value) {
-                    _formKey.currentState.reset();
-                    optionList.clear();
-                    setState(() {
-                      cnt += 1;
+                SizedBox(
+                  height: 15.0,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Option 3',
+                  ),
+                  onSaved: (String value) {
+                    optionList.add(value);
+                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'this is required';
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Option 4',
+                  ),
+                  onSaved: (String value) {
+                    optionList.add(value);
+                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'this is required';
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Correct Option',
+                  ),
+                  onSaved: (String value) {
+                    _question.correctOption = int.tryParse(value);
+                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'this is required';
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                RaisedButton(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                  onPressed: () async {
+                    _question.optionList = optionList;
+                    print("\n*************\n");
+                    _formKey.currentState.save();
+                    print(_question.toMap());
+                    print("\n-----------\n");
+                    await addQuestion(
+                      "userId", //here we will have user id from providers
+                      quizNotifier.currentQuizId,
+                      _question.questionStatement,
+                      _question.optionList,
+                      _question.correctOption,
+                    ).then((value) {
+                      _formKey.currentState.reset();
+                      optionList.clear();
+                      setState(() {
+                        cnt += 1;
+                      });
                     });
-                  });
-                },
-                child: Text(
-                  'Add',
+                  },
+                  child: Text(
+                    'Add',
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShowQuestionScreen(),
-                      // builder: (context) => ShowQuizScreen(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'View Questions',
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-            ],
+                RaisedButton(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowQuestionScreen(),
+                        // builder: (context) => ShowQuizScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'View Questions',
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

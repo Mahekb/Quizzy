@@ -25,77 +25,80 @@ class _QuestionWidState extends State<QuestionWid> {
       child: Column(
         children: [
           Text(
-            data["questionWidStatement"],
+            // data["questionStatement"].toString(),
+            data["questionStatement"] != null
+                ? data["questionStatement"].toString()
+                : "",
             // style: titleStyle,
           ),
           SizedBox(
             height: 10,
           ),
-          ListTile(
-            title: Text(
-              data["optionList"][0],
-            ),
-            leading: Radio(
-              value: SingingCharacter.option1,
-              groupValue: _character,
-              onChanged: (SingingCharacter value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ListTile(
-            title: Text(
-              data["optionList"][1],
-            ),
-            leading: Radio(
-              value: SingingCharacter.option2,
-              groupValue: _character,
-              onChanged: (SingingCharacter value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ListTile(
-            title: Text(
-              data["optionList"][2],
-            ),
-            leading: Radio(
-              value: SingingCharacter.option3,
-              groupValue: _character,
-              onChanged: (SingingCharacter value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ListTile(
-            title: Text(
-              data["optionList"][3],
-            ),
-            leading: Radio(
-              value: SingingCharacter.option4,
-              groupValue: _character,
-              onChanged: (SingingCharacter value) {
-                setState(() {
-                  _character = value;
-                });
-              },
-            ),
-          ),
+          // ListTile(
+          //   title: Text(
+          //     data["optionList"][0],
+          //   ),
+          //   leading: Radio(
+          //     value: SingingCharacter.option1,
+          //     groupValue: _character,
+          //     onChanged: (SingingCharacter value) {
+          //       setState(() {
+          //         _character = value;
+          //       });
+          //     },
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 10,
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     data["optionList"][1],
+          //   ),
+          //   leading: Radio(
+          //     value: SingingCharacter.option2,
+          //     groupValue: _character,
+          //     onChanged: (SingingCharacter value) {
+          //       setState(() {
+          //         _character = value;
+          //       });
+          //     },
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 10,
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     data["optionList"][2],
+          //   ),
+          //   leading: Radio(
+          //     value: SingingCharacter.option3,
+          //     groupValue: _character,
+          //     onChanged: (SingingCharacter value) {
+          //       setState(() {
+          //         _character = value;
+          //       });
+          //     },
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 10,
+          // ),
+          // ListTile(
+          //   title: Text(
+          //     data["optionList"][3],
+          //   ),
+          //   leading: Radio(
+          //     value: SingingCharacter.option4,
+          //     groupValue: _character,
+          //     onChanged: (SingingCharacter value) {
+          //       setState(() {
+          //         _character = value;
+          //       });
+          //     },
+          //   ),
+          // ),
           SizedBox(
             height: 20,
           ),
@@ -104,3 +107,12 @@ class _QuestionWidState extends State<QuestionWid> {
     );
   }
 }
+
+//  Text(
+//                         // data["questionStatement"].toString(),
+//                         snapshot.data[index]["questionStatement"] != null
+//                             ? snapshot.data[index]["questionStatement"]
+//                                 .toString()
+//                             : "",
+//                         // style: titleStyle,
+//                       ),

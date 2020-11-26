@@ -24,7 +24,7 @@ class _MessageRoomState extends State<MessageRoom> {
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          Image.network(widget.url, width: 40, height: 40),
+          // Image.network(widget.url, width: 40, height: 40),
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(widget.name),
