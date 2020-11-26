@@ -83,6 +83,17 @@ Future<List<DocumentSnapshot>> getAllQuiz(String userId) async {
   }
 }
 
+Future<int> noOfQuiz() async {
+  try {
+    CollectionReference ref = Firestore.instance.collection("quiz/");
+    var snapshots = await ref.getDocuments();
+    return snapshots.documents.length;
+  } catch (err) {
+    print("erro : $err");
+    return null;
+  }
+}
+
 Future<bool> enableQuiz(String quizId, context) async {
   QuizNotifier quizNotifier = Provider.of<QuizNotifier>(context);
   quizNotifier.currentQuizId = quizId;

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizzy/api/quizApi.dart';
 import 'package:quizzy/const/Theme.dart';
 import 'package:quizzy/notifier/authNotifier.dart';
 import 'package:quizzy/screens/AddQuizScreen.dart';
@@ -41,6 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
     fontWeight: FontWeight.w700,
     color: Colors.black,
   );
+  int no = 0;
+
   @override
   void initState() {
     // Future<FirebaseUser> user = FirebaseAuth.instance.currentUser();
@@ -54,11 +57,21 @@ class _HomeScreenState extends State<HomeScreen> {
     //     print("User is not null , uid: ${_user.uid} email: ${_user.email}");
     //   }
     // });
+    dynamic x = noOfQuiz().then((value) {
+      setState(() {
+        no = int.tryParse(value.toString());
+      });
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    // dynamic x = noOfQuiz().then((value) {
+    //   setState(() {
+    //     no = int.tryParse(value.toString());
+    //   });
+    // });
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     print("\n***********\n");
     print(authNotifier.user.email);
@@ -231,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Text(
-                              "100%",
+                              "0 %",
                               style: titleStyle,
                             )
                           ],
@@ -256,8 +269,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.black,
                               ),
                             ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
                             Text(
-                              "fwkue\nerufheur\nkefhwi",
+                              "Attempt your\nQuizes\n",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -288,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 15,
                       ),
                       Text(
-                        "77",
+                        no.toString(),
                         style: noStyle,
                       ),
                     ],
@@ -306,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 15,
                       ),
                       Text(
-                        "07",
+                        "0",
                         style: noStyle,
                       ),
                     ],
@@ -393,10 +409,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 10,
                         ),
-                        Icon(
-                          Icons.calendar_today,
-                          size: 40,
-                          color: q_PrimaryColor,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AllQuizesScreen()),
+                            );
+                          },
+                          child: Icon(
+                            Icons.calendar_today,
+                            size: 40,
+                            color: q_PrimaryColor,
+                          ),
                         ),
                       ],
                     ),
